@@ -2,7 +2,6 @@
 
 [json2ts](http://json2ts.com/)
 
-
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
