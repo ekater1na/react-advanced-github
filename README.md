@@ -2,6 +2,9 @@
 
 [json2ts](http://json2ts.com/)
 
+
+[Deploy](https://react-redux-rtkquery.netlify.app/)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
