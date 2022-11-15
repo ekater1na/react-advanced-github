@@ -1,14 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { IRepo } from '../models/models';
 import { useActions } from '../hooks/actions';
+import { useAppSelector } from '../hooks/redux';
 
 export const RepoCard = ({ repo }: { repo: IRepo }) => {
   const { addFavourite, removeFavourite } = useActions();
+  const { favourites } = useAppSelector((store) => store.github);
+
+  const [isFav, setIsFav] = useState(favourites.includes(repo.html_url));
 
   const AddToFavourite = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-
     addFavourite(repo.html_url);
+    setIsFav(true);
+  };
+
+  const RemoveFromFavourite = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    removeFavourite(repo.html_url);
+    setIsFav(false);
   };
 
   return (
@@ -22,12 +32,23 @@ export const RepoCard = ({ repo }: { repo: IRepo }) => {
           </p>
           <p className="text-sm font-thin">{repo?.description}</p>
 
-          <button
-            className="py-2 px-4 bg-yellow-400 rounded hover: shadow-md transition-all"
-            onClick={AddToFavourite}
-          >
-            Add
-          </button>
+          {!isFav && (
+            <button
+              className="py-2 px-4 bg-yellow-400 rounded hover: shadow-md transition-all mr-2"
+              onClick={AddToFavourite}
+            >
+              Add
+            </button>
+          )}
+
+          {isFav && (
+            <button
+              className="py-2 px-4 bg-red-400 rounded hover: shadow-md transition-all"
+              onClick={RemoveFromFavourite}
+            >
+              Remove
+            </button>
+          )}
         </a>
       </div>
     </div>

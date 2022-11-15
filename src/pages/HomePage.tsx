@@ -16,7 +16,7 @@ export const HomePage = () => {
   const [fetchRepos, { isLoading: areReposLoading, data: repos }] = useLazyGetUserReposQuery();
 
   useEffect(() => {
-    setDropdown(debounced.length > 3 && data?.length! > 0);
+    setDropdown(debounced.length > 3);
   }, [debounced, data]);
 
   const clickHandler = (username: string) => {
